@@ -1,0 +1,33 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: rvstore-order-api-deployment
+  labels:
+    app: rvstore-order-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rvstore-order-api
+  template:
+    metadata:
+      labels:
+        app: rvstore-order-api
+    spec:
+      containers:
+      - name: rvstore-order-api
+        image: vergeops/k8s-rvstore-order-api:1.0
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: compose
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: rvstore-order-api
+spec:
+  selector:
+    app: rvstore-order-api
+  ports:
+  - protocol: TCP
+    port: 9002

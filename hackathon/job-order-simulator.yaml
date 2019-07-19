@@ -1,0 +1,14 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: rvstore-order-simulator-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: k8s-rvstore-order-simulator
+        image: vergeops/k8s-rvstore-order-simulator:1.0
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: compose
+      restartPolicy: OnFailure

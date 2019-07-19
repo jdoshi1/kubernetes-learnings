@@ -1,0 +1,36 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: rvstore-orders-mongodb-deployment
+  labels:
+    app: rvstore-orders-mongodb
+spec:
+  selector:
+    matchLabels:
+      app: rvstore-orders-mongodb
+  template:
+    metadata:
+      labels:
+        app: rvstore-orders-mongodb
+    spec:
+      containers:
+      - name: rvstore-orders-mongodb
+        image: mongo:latest
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: mongoadmin
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: secret
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: rvstore-orders-mongodb
+spec:
+  selector:
+    app: rvstore-orders-mongodb
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
+  type: ClusterIP

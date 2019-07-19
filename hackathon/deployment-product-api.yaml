@@ -1,0 +1,33 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: rvstore-product-api-deployment
+  labels:
+    app: rvstore-product-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rvstore-product-api
+  template:
+    metadata:
+      labels:
+        app: rvstore-product-api
+    spec:
+      containers:
+      - name: rvstore-product-api
+        image: vergeops/k8s-rvstore-product-api:1.0
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: compose
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: rvstore-product-api
+spec:
+  selector:
+    app: rvstore-product-api
+  ports:
+  - protocol: TCP
+    port: 9001

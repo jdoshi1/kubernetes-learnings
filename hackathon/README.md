@@ -7,3 +7,16 @@ UI -> API Gateway -> Order-api, Product-api
 Order-api -> MongoDB
 Order simulator -> Every few mins grabs a random name, calls product-api gets a product, create an orders and submit it/save the order in mongo.
 
+
+# ToDo:
+
+1. Fix the secrets from mongodb deployments. I know it's a No-No.
+
+# How to run
+
+
+On mac, switch to docker-for-desktop kubernetes cluster and run:
+
+```
+kubectl -f apply .
+```
