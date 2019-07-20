@@ -28,3 +28,9 @@ Go to localhost:30080/
 Update the Backend host name to http://localhost:30090/    # Don't forget the / in the end
 Click Update.
 ```
+
+# How to delete the cluster
+
+```
+kubectl delete deployments,jobs,services,pods --all
+```
