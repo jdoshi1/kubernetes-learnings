@@ -17,6 +17,14 @@ spec:
       containers:
       - name: rvstore-ui
         image: vergeops/k8s-rvstore-ui:1.0
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 2
+          failureThreshold: 1
 ---
 kind: Service
 apiVersion: v1

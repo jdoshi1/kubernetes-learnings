@@ -20,6 +20,14 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: compose
+        readinessProbe:
+          httpGet:
+            path: /products
+            port: 9001
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 2
+          failureThreshold: 1
 ---
 kind: Service
 apiVersion: v1
