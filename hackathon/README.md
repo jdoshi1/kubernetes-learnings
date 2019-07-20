@@ -20,3 +20,11 @@ On mac, switch to docker-for-desktop kubernetes cluster and run:
 ```
 kubectl -f apply .
 ```
+
+# Check the results
+
+```
+Go to localhost:30080/
+Update the Backend host name to http://localhost:30090/    # Don't forget the / in the end
+Click Update.
+```
